@@ -1,7 +1,6 @@
 package com.km;
 
 import com.km.util.Evolution;
-import com.km.util.Runner;
 
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -11,11 +10,11 @@ public class Application {
     private static final String DIR = "editable";
     private static final String VERSION = "version";
     private static final String CLASS_NAME = "Engine";
+    private static final String VERSION_PREFIX = "ver";
 
     public static void main(String... args) {
         Properties properties = loadConfig();
-        Runnable run = new Runner().execute(DIR, properties.getProperty(VERSION), CLASS_NAME);
-        new Evolution().execute(DIR, properties.getProperty(VERSION), CLASS_NAME, run);
+        new Evolution().execute(DIR, VERSION_PREFIX, properties.getProperty(VERSION), CLASS_NAME);
     }
 
     private static Properties loadConfig() {
