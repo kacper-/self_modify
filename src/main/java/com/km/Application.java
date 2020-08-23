@@ -1,5 +1,6 @@
 package com.km;
 
+import com.km.util.Evolution;
 import com.km.util.Runner;
 
 import java.io.FileInputStream;
@@ -13,9 +14,8 @@ public class Application {
 
     public static void main(String... args) {
         Properties properties = loadConfig();
-        System.out.printf("latest version is %s", properties.get(VERSION));
-        new Runner().execute(DIR, properties.getProperty(VERSION), CLASS_NAME);
-        System.out.println("engine finished");
+        Runnable run = new Runner().execute(DIR, properties.getProperty(VERSION), CLASS_NAME);
+        new Evolution().execute(DIR, properties.getProperty(VERSION), CLASS_NAME, run);
     }
 
     private static Properties loadConfig() {
